@@ -1,5 +1,6 @@
 import useUsersData from "../../../useUsersData";
 import { Table } from './styled';
+import User from "./User";
 
 const Users = () => {
     const { users, state } = useUsersData();
@@ -18,15 +19,14 @@ const Users = () => {
                         <th>Delete</th>
                     </tr>
                     {state === "success" && users.map(({ id, name, username, email, address }) => (
-                        <tr key={id}>
-                            <td>{id}</td>
-                            <td>{name}</td>
-                            <td>{username}</td>
-                            <td>{email}</td>
-                            <td>{address.city}</td>
-                            <td><button>Edit</button></td>
-                            <td><button>Delete</button></td>
-                        </tr>
+                        <User
+                            key={id}
+                            id={id}
+                            name={name}
+                            username={username}
+                            email={email}
+                            address={address}
+                        />
                     ))}
                 </tbody>
             </Table>
