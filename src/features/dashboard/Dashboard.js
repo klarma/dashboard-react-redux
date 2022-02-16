@@ -3,6 +3,7 @@ import Header from "../../common/Header"
 import Section from "../../common/Section";
 import Users from "./Users";
 import Button from "./Button";
+import Form from "./Form";
 
 const Dashboard = () => {
     return (
@@ -11,7 +12,12 @@ const Dashboard = () => {
             <Section
                 title="User list"
                 body={<Users />}
-                extraHeaderContent={<Button title="Add new"/>}
+                extraHeaderContent={<Button title="Add new" />}
+            />
+
+            <Section
+                title="Form"
+                body={<Form />}
             />
         </Container>
     )

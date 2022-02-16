@@ -1,18 +1,23 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {addUser} from "../../../usersSlice";
+import { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, selectUsers } from "../../../usersSlice";
+import Button from "../Button";
 import { LabelText, Input } from "./styled";
 
 const Form = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const inputNameRef = useRef(null);
+
+    const { users } = useSelector(selectUsers);
 
     const dispatch = useDispatch();
 
-    const onFormSubmit = (event)=>{
+    const onFormSubmit = (event) => {
         event.preventDefault();
 
         const newUser = {
+            id: users.length + 1,
             name: name.trim(),
             email: email.trim(),
         }
@@ -21,9 +26,11 @@ const Form = () => {
             return;
         };
 
-        dispatch(addUser({
-            newUser
-        }));
+        dispatch(addUser(newUser));
+
+        setName("");
+        setEmail("");
+        inputNameRef.current.focus();
     };
 
     return (
@@ -35,6 +42,7 @@ const Form = () => {
                 <Input
                     value={name}
                     onChange={({ target }) => setName(target.value)}
+                    ref={inputNameRef}
                     type="text"
                     autoFocus
                     required
@@ -53,8 +61,8 @@ const Form = () => {
                 />
             </label>
             <br></br>
-            <button>Cancel</button>
-            <button>Submit</button>
+            <Button title="Cancel" />
+            <Button title="Submit" />
         </form>
     )
 };

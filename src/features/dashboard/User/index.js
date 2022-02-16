@@ -1,14 +1,14 @@
 import Button from "../Button";
 
-const User = ( {id, name, username, email, address} ) => (
+const User = ({ id, name, username, email, address }) => (
     <tr>
         <td>{id}</td>
         <td>{name}</td>
-        <td>{username}</td>
+        {!!username ? <td>{username}</td> : <td></td>}
         <td>{email}</td>
-        <td>{address.city}</td>
-        <td><Button title="edit"/></td>
-        <td><Button title="delete"/></td>
+        {!!username ? <td>{address.city}</td> : <td></td>}
+        <td><Button title="edit" /></td>
+        <td><Button title="delete" /></td>
     </tr>
 );
 

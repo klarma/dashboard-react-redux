@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers } from "../../../usersSlice";
+import { fetchUsers, selectUsers } from "../../../usersSlice";
 import User from "../User";
 import { Table } from './styled';
 
 const Users = () => {
-    const { users } = useSelector(state => state.users);
+    const { users } = useSelector(selectUsers);
 
     const dispatch = useDispatch();
 
