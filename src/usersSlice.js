@@ -31,13 +31,19 @@ export const fetchUsers = () => {
 };
 
 export const postUsers = (users) => {
-    fetch("https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(users),
-    });
+    return async () => {
+        try {
+            await fetch("https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(users),
+            });
+        } catch (e) {
+
+        };
+    };
 };
 
 export default usersSlice.reducer;

@@ -27,7 +27,7 @@ const Form = () => {
         };
 
         dispatch(addUser(newUser));
-        dispatch(postUsers(users));
+        dispatch(postUsers([...users, newUser]));
 
         setName("");
         setEmail("");
