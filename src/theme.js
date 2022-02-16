@@ -1,5 +1,6 @@
 const theme = {
     color: {
+        silver: "#ccc",
         alto: "#ddd",
         gallery: "#eee",
         white: "#fff",
