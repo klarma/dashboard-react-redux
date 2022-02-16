@@ -10,7 +10,7 @@ const Dashboard = () => {
         <Container>
             <Header title="Dashboard" />
             <Section
-                title="User list"
+                title="Users list"
                 body={<Users />}
                 extraHeaderContent={<Button title="Add new" />}
             />
