@@ -1,9 +1,21 @@
-import useUsersData from "../../../useUsersData";
-import { Table } from './styled';
+import { useDispatch } from "react-redux";
+import { getUsers, fetchUsers } from "../../../usersSlice";
 import User from "./User";
+import { Table } from './styled';
+import { useEffect, useState } from "react";
+
 
 const Users = () => {
-    const { users, state } = useUsersData();
+    const [users, setUsers]= useState([]);
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(fetchUsers())
+        const usersFromStore = dispatch(getUsers());
+        console.log("Jest to",usersFromStore)
+        setUsers(usersFromStore);
+
+    },[dispatch]);
 
     return (
         <div>
@@ -18,7 +30,7 @@ const Users = () => {
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
-                    {state === "success" && users.map(({ id, name, username, email, address }) => (
+                    {users.map(({ id, name, username, email, address }) => (
                         <User
                             key={id}
                             id={id}

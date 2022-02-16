@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import {fetchUsers} from "./usersSlice";
 
 const useUsersData = () => {
     const [usersData, setUsersData] = useState({
@@ -6,30 +8,34 @@ const useUsersData = () => {
         users: null,
     });
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        const fetchRates = async () => {
-            try {
-                const response = await fetch("https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data");
+        fetchUsers()(dispatch)
 
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
+        // const fetchRates = async () => {
+        //     try {
+        //         const response = await fetch("https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data");
 
-                const users = await response.json();
+        //         if (!response.ok) {
+        //             throw new Error(response.statusText);
+        //         }
 
-                setUsersData({
-                    state: "success",
-                    users,
-                });
-            } catch {
-                setUsersData({
-                    state: "error",
-                    users: null,
-                });
-            };
-        };
+        //         const users = await response.json();
 
-        setTimeout(fetchRates, 500);
+        //         setUsersData({
+        //             state: "success",
+        //             users,
+        //         });
+        //     } catch {
+        //         setUsersData({
+        //             state: "error",
+        //             users: null,
+        //         });
+        //     };
+        // };
+
+    
     }, []);
 
     return usersData;
