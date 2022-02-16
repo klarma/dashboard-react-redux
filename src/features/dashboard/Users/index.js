@@ -1,21 +1,17 @@
-import { useDispatch } from "react-redux";
-import { getUsers, fetchUsers } from "../../../usersSlice";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers } from "../../../usersSlice";
 import User from "./User";
 import { Table } from './styled';
-import { useEffect, useState } from "react";
-
 
 const Users = () => {
-    const [users, setUsers]= useState([]);
+    const { users } = useSelector(state => state.users);
 
     const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(fetchUsers())
-        const usersFromStore = dispatch(getUsers());
-        console.log("Jest to",usersFromStore)
-        setUsers(usersFromStore);
 
-    },[dispatch]);
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     return (
         <div>
