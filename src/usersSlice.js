@@ -6,7 +6,7 @@ const usersSlice = createSlice({
         users: [],
     },
     reducers: {
-        setUsers: (state, {payload})=>{
+        setUsers: (state, { payload }) => {
             state.users = payload;
         },
         addUser: ({ users }, { payload }) => {
@@ -17,15 +17,27 @@ const usersSlice = createSlice({
 
 export const { addUser, setUsers } = usersSlice.actions;
 export const selectUsers = state => state.users;
-export const fetchUsers = ()=> {
-    return async (dispatch)=>{
-        try{
+
+export const fetchUsers = () => {
+    return async (dispatch) => {
+        try {
             const response = await fetch("https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data");
             const data = await response.json();
-            dispatch(usersSlice.actions.setUsers(data));   
-        }catch(e){
+            dispatch(usersSlice.actions.setUsers(data));
+        } catch (e) {
 
         };
     };
 };
+
+export const postUsers = (users) => {
+    fetch("https://my-json-server.typicode.com/karolkproexe/jsonplaceholderdb/data", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(users),
+    });
+};
+
 export default usersSlice.reducer;

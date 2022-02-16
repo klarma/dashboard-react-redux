@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, selectUsers } from "../../../usersSlice";
+import { addUser, postUsers, selectUsers } from "../../../usersSlice";
 import Button from "../Button";
 import { LabelText, Input } from "./styled";
 
@@ -27,6 +27,7 @@ const Form = () => {
         };
 
         dispatch(addUser(newUser));
+        dispatch(postUsers(users));
 
         setName("");
         setEmail("");
@@ -35,36 +36,32 @@ const Form = () => {
 
     return (
         <form onSubmit={onFormSubmit}>
-            <label>
-                <LabelText>
-                    Name
-                </LabelText>
-                <Input
-                    value={name}
-                    onChange={({ target }) => setName(target.value)}
-                    ref={inputNameRef}
-                    type="text"
-                    autoFocus
-                    required
-                />
-            </label>
+            <LabelText>
+                Name
+            </LabelText>
+            <Input
+                value={name}
+                onChange={({ target }) => setName(target.value)}
+                ref={inputNameRef}
+                type="text"
+                autoFocus
+                required
+            />
             <br></br>
-            <label>
-                <LabelText>
-                    Email
-                </LabelText>
-                <Input
-                    value={email}
-                    onChange={({ target }) => setEmail(target.value)}
-                    type="email"
-                    required
-                />
-            </label>
+            <LabelText>
+                Email
+            </LabelText>
+            <Input
+                value={email}
+                onChange={({ target }) => setEmail(target.value)}
+                type="email"
+                required
+            />
             <br></br>
             <Button title="Cancel" />
             <Button title="Submit" />
         </form>
-    )
+    );
 };
 
 export default Form;
