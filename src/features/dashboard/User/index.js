@@ -1,3 +1,5 @@
+import Button from "../Button";
+
 const User = ( {id, name, username, email, address} ) => (
     <tr>
         <td>{id}</td>
@@ -5,8 +7,8 @@ const User = ( {id, name, username, email, address} ) => (
         <td>{username}</td>
         <td>{email}</td>
         <td>{address.city}</td>
-        <td><button>Edit</button></td>
-        <td><button>Delete</button></td>
+        <td><Button title="edit"/></td>
+        <td><Button title="delete"/></td>
     </tr>
 );
 

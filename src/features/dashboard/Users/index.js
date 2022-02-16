@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers } from "../../../usersSlice";
-import User from "./User";
+import User from "../User";
 import { Table } from './styled';
 
 const Users = () => {
