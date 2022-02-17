@@ -12,10 +12,14 @@ const usersSlice = createSlice({
         addUser: ({ users }, { payload }) => {
             users.push(payload);
         },
+        removeUser: ({users}, { payload: userId }) => {
+            const index = users.findIndex(user => user.id === userId);
+            users.splice(index, 1);
+        },
     },
 });
 
-export const { addUser, setUsers } = usersSlice.actions;
+export const { addUser, setUsers, removeUser } = usersSlice.actions;
 export const selectUsers = state => state.users;
 
 export const fetchUsers = () => {
